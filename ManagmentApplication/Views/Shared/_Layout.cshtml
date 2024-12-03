@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ManagmentApplication</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ManagmentApplication.styles.css" asp-append-version="true" />
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="~/vendors/feather/feather.css" />
+    <link rel="stylesheet" href="~/vendors/mdi/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="~/vendors/ti-icons/css/themify-icons.css" />
+    <link rel="stylesheet" href="~/vendors/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/vendors/typicons/typicons.css" />
+    <link rel="stylesheet" href="~/vendors/simple-line-icons/css/simple-line-icons.css" />
+    <link rel="stylesheet" href="~/vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="~/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
+
+    <!-- Plugin CSS for this page -->
+    <link rel="stylesheet" href="~/vendors/datatables.net-bs4/dataTables.bootstrap4.css" />
+    <link rel="stylesheet" type="text/css" href="~/js/select.dataTables.min.css" />
+
+    <!-- Inject CSS -->
+    <link rel="stylesheet" href="~/css/style.css" />
+
+    <link rel="shortcut icon" href="~/images/favicon.png" />
+</head>
+<body>
+    <div class="d-flex">
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">
+                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item nav-category">Project Management</li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="/Proyectoes/Index" aria-expanded="false" aria-controls="projects">
+                        <i class="menu-icon mdi mdi-folder-open"></i>
+                        <span class="menu-title">Projects</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="projects">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" asp-controller="Proyectoes" asp-action="List">List Projects</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Proyectoes" asp-action="Create">Create Project</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="/Tareas/Index" aria-expanded="false" aria-controls="tasks">
+                        <i class="menu-icon mdi mdi-checkbox-marked-outline"></i>
+                        <span class="menu-title">Tasks</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="tasks">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" asp-controller="Tareas" asp-action="List">List Tasks</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Tareas" asp-action="Create">Create Task</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Participantes" asp-action="Index">
+                        <i class="menu-icon mdi mdi-account"></i>
+                        <span class="menu-title">Participants</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="StatusProyectoes" asp-action="Index">
+                        <i class="menu-icon mdi mdi-alert-circle-outline"></i>
+                        <span class="menu-title">Project Status</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Tareas" asp-action="Reporte">
+                        <i class="menu-icon mdi mdi-folder-open"></i>
+                        <span class="menu-title">Reporte de Tareas</span>
+                    </a>
+                </li>
+
+            
+            </ul>
+        </nav>
+
+        <div class="container-fluid">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

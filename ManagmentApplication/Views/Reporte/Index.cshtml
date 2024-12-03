@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ManagmentApplication.Models.Tarea>
+
+@{
+    ViewData["Title"] = "Reporte de Tareas";
+}
+
+<h1>Reporte de Tareas</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nueva Tarea</a>
+</p>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Lista de Tareas Asignadas</h4>
+        <p class="card-description">Reporte detallado de las tareas, proyectos y participantes.</p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.First().Nombre)</th>
+                        <th>Nombre del Proyecto</th>
+                        <th>Participante Asignado</th>
+                        <th>Fecha Esperada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                            <td>@Html.DisplayFor(modelItem => item.IdProyectoNavigation.Nombre)</td>
+                            <td>
+                                @foreach (var participante in item.IdParticipantes)
+                                {
+                                    @participante.Nombre
+                                    <br />
+                                }
+                            </td>
+                            <td>@item.TiempoEsperado</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ManagmentApplication.Models.StatusProyecto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Estados de Proyecto</h4>
+        <p class="card-description">Lista de estados disponibles para los proyectos.</p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.First().Descripcion)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.IdStatus">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.IdStatus">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.IdStatus">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

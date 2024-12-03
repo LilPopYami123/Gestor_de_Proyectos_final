@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ManagmentApplication.Models.Participante>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Participantes</h4>
+        <p class="card-description">Lista de participantes disponibles.</p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.First().Nombre)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().Correo)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().Telefono)</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Correo)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.IdParticipante" class="btn btn-warning btn-sm">Edit</a>
+                                <a asp-action="Details" asp-route-id="@item.IdParticipante" class="btn btn-info btn-sm">Details</a>
+                                <a asp-action="Delete" asp-route-id="@item.IdParticipante" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

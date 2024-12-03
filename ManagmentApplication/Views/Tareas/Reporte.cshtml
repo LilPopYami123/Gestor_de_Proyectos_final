@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ManagmentApplication.Models.Tarea>
+
+@{
+    ViewData["Title"] = "Reporte";
+}
+<br />
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Reporte de Tareas</h4>
+        <p class="card-description">Lista de tareas con los detalles correspondientes.</p>
+
+        <!-- Botones para generar PDF y Excel -->
+        <div>
+            <a asp-action="CrearExcel" class="btn btn-success" style="margin-right: 10px;">Generar Excel</a>
+            <a asp-action="CrearPdf" class="btn btn-danger" style="margin-left: 10px;">Generar PDF</a>
+
+        </div>
+
+        <div class="table-responsive" style="margin-top: 20px;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.First().Nombre)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().IdProyectoNavigation.Nombre)</th>
+                        <th>Participante(s)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().TiempoEsperado)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                            <td>@Html.DisplayFor(modelItem => item.IdProyectoNavigation.Nombre)</td>
+                            <td>
+                                @foreach (var participante in item.IdParticipantes)
+                                {
+                                    <span>@participante.Nombre</span>
+
+                                    <br />
+                                }
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.TiempoEsperado)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

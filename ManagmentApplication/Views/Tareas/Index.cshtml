@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ManagmentApplication.Models.Tarea>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Tareas</h4>
+        <p class="card-description">Lista de tareas disponibles.</p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.First().Nombre)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().Descripcion)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().TiempoRealizado)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().TiempoEsperado)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().FechaCreacion)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().Estado)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().IdProyectoNavigation.Nombre)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TiempoRealizado)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TiempoEsperado)</td>
+                            <td>@Html.DisplayFor(modelItem => item.FechaCreacion)</td>
+                            <td>
+                                @if (item.Estado == "Pendiente")
+                                {
+                                    <label class="badge badge-danger">Pendiente</label>
+                                }
+                                else if (item.Estado == "En Progreso")
+                                {
+                                    <label class="badge badge-warning">En Progreso</label>
+                                }
+                                else if (item.Estado == "Finalizado")
+                                {
+                                    <label class="badge badge-success">Finalizado</label>
+                                }
+                                else
+                                {
+                                    <label class="badge badge-info">Otro</label>
+                                }
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.IdProyectoNavigation.Nombre)</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.IdTarea">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.IdTarea">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.IdTarea">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
